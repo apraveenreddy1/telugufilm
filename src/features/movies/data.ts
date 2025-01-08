@@ -7,6 +7,7 @@ import type {
   MovieDetails,
   MovieListItem,
   MovieVideo,
+  MovieBase,
 } from '@/features/movies/types';
 import {
   PERMITTED_LIMIT,
@@ -19,7 +20,7 @@ import { cache } from 'react';
 import 'server-only';
 
 export const getMovie = cache(async (movieId: Id) => {
-  const movie = await tmdbClient.get<MovieDetails>(`/movie/${movieId}`);
+  const movie = await tmdbClient.get<MovieDetails>(`/movie&movie_id=${movieId}`);
   if (!isMoviePermitted(movie)) return null;
   return movie;
 });
@@ -57,7 +58,7 @@ export const getDiscoverMovies = cache(
     }
 
     const movies = await tmdbClient.get<PaginationResponse<MovieListItem>>(
-      '/discover/movie',
+      '/movie.discover',
       searchParams,
     );
 
@@ -67,7 +68,7 @@ export const getDiscoverMovies = cache(
 
 export const getPopularMovies = cache(async (page: number) => {
   const movies = await tmdbClient.get<PaginationResponse<MovieListItem>>(
-    '/movie/popular',
+    '/movie.popular',
     new URLSearchParams({
       page: page.toString(),
     }),
@@ -76,20 +77,40 @@ export const getPopularMovies = cache(async (page: number) => {
   return filterPermittedPageResults(movies);
 });
 
+export const getSliderMovies = cache(async () => {
+  const { slider } = await tmdbClient.get<{ slider: MovieBase[] }>(
+    '/movie.slider',
+  );
+  return slider;
+});
+
 export const getTopRatedMovies = cache(async (page: number) => {
   const movies = await tmdbClient.get<PaginationResponse<MovieListItem>>(
-    '/movie/top_rated',
+    '/movie.top_rated',
     new URLSearchParams({
       page: page.toString(),
     }),
   );
+
+  return filterPermittedPageResults(movies);
+});
+
+export const getNewsList = cache(async (page: number) => {
+  const movies = await tmdbClient.get<PaginationResponse<MovieListItem>>(
+    '/news.list',
+    new URLSearchParams({
+      page: page.toString(),
+    }),
+  );
+
+  console.log('filterPermittedPageResults(movies)', filterPermittedPageResults(movies))
 
   return filterPermittedPageResults(movies);
 });
 
 export const getMovieGenres = cache(async () => {
   const { genres } = await tmdbClient.get<{ genres: Genre[] }>(
-    '/genre/movie/list',
+    '/movie.genre',
   );
 
   return genres;
@@ -106,15 +127,16 @@ export const getMovieRecommendations = cache(
     const searchParams = new URLSearchParams();
     searchParams.set('page', page.toString());
 
-    const recommendations = await tmdbClient.get<
+    const recommendations = await tmdbClient.get< 
       PaginationResponse<MovieListItem>
-    >(`/movie/${movieId}/recommendations`, searchParams);
+    >(`/movie.recommendations&movie_id=${movieId}`, searchParams);
 
     return filterPermittedPageResults(recommendations);
   },
 );
 
 export const getMovieCredits = cache(async (movieId: Id) => {
+  console.log('movie credits')
   const credits = await tmdbClient.get<{
     cast: MovieCast[];
     crew: MovieCrew[];

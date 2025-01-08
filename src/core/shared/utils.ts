@@ -1,7 +1,7 @@
 import type { Maybe, PaginationResponse } from '@/core/shared/types';
 import _ from 'lodash';
 
-export const APP_TITLE = 'Telugufilm';
+export const APP_TITLE = 'TFDA';
 
 export const FIRST_PAGE = 1;
 

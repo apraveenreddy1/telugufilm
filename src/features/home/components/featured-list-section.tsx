@@ -95,6 +95,8 @@ export async function FeaturedListSection({
     startIndex += 1;
   }
 
+  console.log(title, items, mediaType, MediaType.MOVIE)
+
   return (
     <FeaturedListSectionShell
       title={title}

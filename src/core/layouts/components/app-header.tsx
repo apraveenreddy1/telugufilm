@@ -98,7 +98,7 @@ export function AppHeader() {
             </IconButton>
             <IconButton
               aria-label="Toggle theme"
-              href="#"
+              href="https://github.com/onderonur/next-moviez"
               LinkComponent={NextLink}
             >
               <GitHubIcon />

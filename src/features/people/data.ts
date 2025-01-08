@@ -20,7 +20,7 @@ export const getPopularPeople = cache(async (page: number) => {
   searchParams.set('page', page.toString());
 
   const people = await tmdbClient.get<PaginationResponse<PersonListItem>>(
-    '/person/popular',
+    '/person.popular',
     searchParams,
   );
 
