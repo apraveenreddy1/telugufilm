@@ -10,6 +10,7 @@ import { Box, Stack } from '@mui/material';
 import { MovieOverview } from './movie-overview';
 import { MovieTitle } from './movie-title';
 import { useEffect, useState } from 'react';
+import Image from 'next/image'
 
 type FeaturedMovieProps = {
   movies: MovieBase[]
@@ -42,10 +43,13 @@ export function FeaturedMovie({ movies }: FeaturedMovieProps) {
         alt={movies?.[currentIndex]?.title}
         tmdbImageQuality="original"
         fill
+        priority
         sx={{
           objectFit: 'cover',
         }}
       />
+
+
       <Box
         sx={{
           position: 'absolute',
