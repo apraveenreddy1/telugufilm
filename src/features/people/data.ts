@@ -38,7 +38,7 @@ export const getPerson = cache(async (personId: Id) => {
   const searchParams = new URLSearchParams();
 
   const person = await tmdbClient.get<PersonDetails>(
-    `/person/${personId}`,
+    `/person&person_id=${personId}`,
     searchParams,
   );
 
@@ -49,7 +49,7 @@ export const getPerson = cache(async (personId: Id) => {
 
 export const getPersonImages = cache(async (personId: Id) => {
   const images = await tmdbClient.get<{ profiles: ImageInfo[] }>(
-    `/person/${personId}/images`,
+    `/person.images&person_id=${personId}`,
   );
 
   return images.profiles;
@@ -59,7 +59,7 @@ export const getPersonCredits = cache(async (personId: Id) => {
   const credits = await tmdbClient.get<{
     cast: PersonCasting[];
     crew: PersonCrew[];
-  }>(`/person/${personId}/credits`);
+  }>(`/person.credits&person_id=${personId}`);
 
   credits.cast = filterPermittedMovies(credits.cast);
   credits.crew = filterPermittedMovies(credits.crew);
