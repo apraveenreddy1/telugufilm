@@ -82,7 +82,6 @@ type MovieCardProps = {
 };
 
 export function MovieCard({ movie, subheader }: MovieCardProps) {
-  console.log('movie', movie)
   return (
     <MovieCardShell
       movieId={movie.id}

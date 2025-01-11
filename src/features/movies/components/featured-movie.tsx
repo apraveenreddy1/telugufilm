@@ -1,5 +1,3 @@
-"use client"
-
 import { ButtonLink } from '@/core/ui/components/button-link';
 import { Padder } from '@/core/ui/components/padder';
 import type { MovieBase } from '@/features/movies/types';
@@ -9,25 +7,12 @@ import InfoIcon from '@mui/icons-material/InfoOutlined';
 import { Box, Stack } from '@mui/material';
 import { MovieOverview } from './movie-overview';
 import { MovieTitle } from './movie-title';
-import { useEffect, useState } from 'react';
 
 type FeaturedMovieProps = {
-  movies: MovieBase[]
+  movie: MovieBase;
 };
 
-export function FeaturedMovie({ movies }: FeaturedMovieProps) {
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % movies.length);
-    }, 3000);
-
-    return () => clearInterval(timer);
-  }, [movies.length, 3000]);
-
-
-
+export function FeaturedMovie({ movie }: FeaturedMovieProps) {
   return (
     <Box
       sx={{
@@ -36,10 +21,9 @@ export function FeaturedMovie({ movies }: FeaturedMovieProps) {
         display: 'grid',
       }}
     >
-
       <TmdbImage
-        src={movies?.[currentIndex]?.backdrop_path}
-        alt={movies?.[currentIndex]?.title}
+        src={movie.backdrop_path}
+        alt={movie.title}
         tmdbImageQuality="original"
         fill
         priority
@@ -64,15 +48,15 @@ export function FeaturedMovie({ movies }: FeaturedMovieProps) {
         <Padder>
           <Stack spacing={2} sx={{ position: 'relative', maxWidth: '75ch' }}>
             <MovieTitle
-              title={movies?.[currentIndex]?.title}
-              subtitle={getMovieReleaseYear(movies?.[currentIndex])?.toString()}
+              title={movie.title}
+              subtitle={getMovieReleaseYear(movie)?.toString()}
             />
             <div>
-              <MovieOverview text={movies?.[currentIndex]?.overview} maxLines={4} />
+              <MovieOverview text={movie.overview} maxLines={4} />
             </div>
             <div>
               <ButtonLink
-                href={`/movies/${movies?.[currentIndex]?.id}`}
+                href={`/movies/${movie.id}`}
                 variant="outlined"
                 color="primary"
                 startIcon={<InfoIcon />}

@@ -96,15 +96,15 @@ export default async function MoviePage(props: MoviePageProps) {
                 <MovieSummary movie={movie} />
               </Padder>
 
-              {/* <Padder>
+              <Padder>
                 <Suspense fallback={<MovieTopCrewSkeleton />}>
                   <MovieTopCrew movieId={movieId} />
                 </Suspense>
-              </Padder> */}
+              </Padder>
 
               <Divider />
             </Stack>
-            {/* <Stack
+            <Stack
               // TODO: `Stack` with `spacing` adds unnecessary `margin-top` to the first suspended
               // element too while it's showing its fallback.
               // So, `gap` is used here instead of `spacing`.
@@ -122,7 +122,7 @@ export default async function MoviePage(props: MoviePageProps) {
               <Suspense fallback={<MovieCastSkeleton />}>
                 <MovieCast movieId={movieId} />
               </Suspense>
-            </Stack> */}
+            </Stack>
           </Stack>
         </main>
         <aside>

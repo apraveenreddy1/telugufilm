@@ -20,7 +20,7 @@ export const getPopularPeople = cache(async (page: number) => {
   searchParams.set('page', page.toString());
 
   const people = await tmdbClient.get<PaginationResponse<PersonListItem>>(
-    '/person.popular',
+    '/person/popular',
     searchParams,
   );
 
@@ -38,7 +38,7 @@ export const getPerson = cache(async (personId: Id) => {
   const searchParams = new URLSearchParams();
 
   const person = await tmdbClient.get<PersonDetails>(
-    `/person&person_id=${personId}`,
+    `/person/${personId}`,
     searchParams,
   );
 
@@ -49,7 +49,7 @@ export const getPerson = cache(async (personId: Id) => {
 
 export const getPersonImages = cache(async (personId: Id) => {
   const images = await tmdbClient.get<{ profiles: ImageInfo[] }>(
-    `/person.images&person_id=${personId}`,
+    `/person/${personId}/images`,
   );
 
   return images.profiles;
@@ -59,7 +59,7 @@ export const getPersonCredits = cache(async (personId: Id) => {
   const credits = await tmdbClient.get<{
     cast: PersonCasting[];
     crew: PersonCrew[];
-  }>(`/person.credits&person_id=${personId}`);
+  }>(`/person/${personId}/credits`);
 
   credits.cast = filterPermittedMovies(credits.cast);
   credits.crew = filterPermittedMovies(credits.crew);

@@ -4,7 +4,7 @@ import { Padder } from '@/core/ui/components/padder';
 import { Title } from '@/core/ui/components/title';
 import { FeaturedMovie } from '@/features/movies/components/featured-movie';
 import { MovieInfiniteGridList } from '@/features/movies/components/movie-infinite-grid-list';
-import { getPopularMovies, getSliderMovies } from '@/features/movies/data';
+import { getPopularMovies } from '@/features/movies/data';
 import { Divider, Stack } from '@mui/material';
 
 export const dynamic = 'force-dynamic';
@@ -15,17 +15,16 @@ export const metadata = getMetadata({
 });
 
 export default async function PopularMoviesPage() {
-  const [firstPage, sliders] = await Promise.all([
-    getPopularMovies(FIRST_PAGE),
-    getSliderMovies()
-  ]);
+  const firstPage = await getPopularMovies(FIRST_PAGE);
+
+  const [featuredMovie] = firstPage.results;
 
   const infiniteListSearchParams = new URLSearchParams();
   infiniteListSearchParams.set('page', '%pageIndex%');
 
   return (
     <main>
-      <FeaturedMovie movies={sliders} />
+      <FeaturedMovie movie={featuredMovie} />
       <Stack spacing={2}>
         <Divider />
         <Padder>

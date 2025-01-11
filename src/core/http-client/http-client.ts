@@ -26,7 +26,6 @@ export const httpClient = {
     url: string,
     searchParams?: URLSearchParams,
   ): Promise<Data> => {
-  
     const fullUrl = createUrl(url, searchParams);
     const response = await fetch(fullUrl);
     const data = await handleResponse<Data>(response);

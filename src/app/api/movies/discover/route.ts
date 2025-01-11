@@ -7,7 +7,9 @@ export async function GET(request: NextRequest) {
 
   const page = Number(searchParams.get('page'));
   const genreId = Number(searchParams.get('genreId')) || undefined;
- 
+  // TMDb API returns different results for `sortBy: undefined` and `sortBy: null`.
+  // It looks like `undefined` returns the correct results.
+  // So, we fall back to `undefined` here.
   const sortBy = searchParams.get('sortBy') || undefined;
 
   const moviesPage = await getDiscoverMovies(page, genreId, sortBy);
