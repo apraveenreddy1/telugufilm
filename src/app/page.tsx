@@ -40,7 +40,7 @@ export default async function HomePage() {
         <Suspense
           fallback={
             <FeaturedListSectionSkeleton
-              title="Popular Movies"
+              title="Popular Movies1"
               mediaType={MediaType.MOVIE}
             />
           }
