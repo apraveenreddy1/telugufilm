@@ -9,6 +9,7 @@ import { TmdbAttribution } from '@/features/tmdb/components/tmdb-attribution';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import MenuIcon from '@mui/icons-material/Menu';
 import PersonIcon from '@mui/icons-material/RecentActors';
+import FeedIcon from '@mui/icons-material/Feed';
 import StarIcon from '@mui/icons-material/StarRate';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import type { DrawerProps } from '@mui/material';
@@ -154,6 +155,12 @@ export function AppDrawer({ genres }: AppDrawerProps) {
             selected={pathname === '/movies/top-rated'}
             icon={<StarIcon />}
             title="Top Rated Movies"
+          />
+           <AppDrawerItem
+            href="/movies/news"
+            selected={pathname === '/movies/news'}
+            icon={<FeedIcon />}
+            title="News"
           />
           <AppDrawerItem
             href="/people/popular"

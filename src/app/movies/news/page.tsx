@@ -8,7 +8,7 @@ import { Divider, Stack } from '@mui/material';
 
 export const dynamic = 'force-dynamic';
 
-export default async function TopRatedMoviesPage() {
+export default async function News() {
   const [firstPage, sliders] = await Promise.all([
     getPopularMovies(FIRST_PAGE),
     getSliderMovies()
@@ -23,9 +23,9 @@ export default async function TopRatedMoviesPage() {
       <Stack spacing={2}>
         <Divider />
         <Padder>
-          <Title level={1} title="Top Rated Movies" />
+          <Title level={1} title="News" />
           <MovieInfiniteGridList
-            pageKeyTemplate={`/api/movies/top-rated?${infiniteListSearchParams.toString()}`}
+            pageKeyTemplate={`/api/movies/news?${infiniteListSearchParams.toString()}`}
             firstPage={firstPage}
             skipFirstMovie
           />

@@ -12,7 +12,7 @@ import { Title } from '@/core/ui/components/title';
 import { FeaturedMovie } from '@/features/movies/components/featured-movie';
 import { MovieInfiniteGridList } from '@/features/movies/components/movie-infinite-grid-list';
 import { MovieSortingSelect } from '@/features/movies/components/movie-sorting-select';
-import { getDiscoverMovies, getMovieGenre } from '@/features/movies/data';
+import { getDiscoverMovies, getMovieGenre, getSliderMovies } from '@/features/movies/data';
 import { Divider, Stack } from '@mui/material';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -70,21 +70,20 @@ export default async function DiscoverMoviesPage(
     searchParams,
   });
 
-  const [genre, firstPage] = await Promise.all([
+  const [genre, firstPage, sliders] = await Promise.all([
     genreId ? getMovieGenre(genreId) : undefined,
     getDiscoverMovies(FIRST_PAGE, genreId, sortBy),
+    getSliderMovies()
   ]);
 
   if (!firstPage.total_results) notFound();
-
-  const [featuredMovie] = firstPage.results;
 
   const infiniteListSearchParams = parseObjectToSearchParams(searchParams);
   infiniteListSearchParams.set('page', '%pageIndex%');
 
   return (
     <main>
-      <FeaturedMovie movie={featuredMovie} />
+      <FeaturedMovie movies={sliders} />
       <Stack spacing={2}>
         <Divider />
         <Padder>

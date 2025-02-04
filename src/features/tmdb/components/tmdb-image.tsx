@@ -15,6 +15,6 @@ export function TmdbImage({ src, tmdbImageQuality, ...rest }: TmdbImageProps) {
   const { getImageUrl } = useTmdbConfigurationContext();
 
   const imageUrl = getImageUrl(src, tmdbImageQuality);
-
-  return <BaseImage src={imageUrl} {...rest} />;
+ 
+  return <BaseImage src={src} {...rest} />;
 }

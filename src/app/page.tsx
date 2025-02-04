@@ -11,7 +11,9 @@ import {
   getDiscoverMovies,
   getMovieGenres,
   getPopularMovies,
+  getSliderMovies,
   getTopRatedMovies,
+  getNewsList
 } from '@/features/movies/data';
 import { getPopularPeople } from '@/features/people/data';
 import { Divider, Stack } from '@mui/material';
@@ -23,16 +25,17 @@ export const metadata = getMetadata({
 });
 
 export default async function HomePage() {
-  const [movieGenres, popularMovies] = await Promise.all([
+  const [movieGenres, popularMovies, sliders] = await Promise.all([
     getMovieGenres(),
     getPopularMovies(FIRST_PAGE),
+    getSliderMovies()
   ]);
 
   const [featuredMovie] = popularMovies.results;
 
   return (
     <main>
-      <FeaturedMovie movie={featuredMovie} />
+      <FeaturedMovie movies={sliders} />
 
       <Stack spacing={6}>
         <Divider />
@@ -40,7 +43,7 @@ export default async function HomePage() {
         <Suspense
           fallback={
             <FeaturedListSectionSkeleton
-              title="Popular Movies1"
+              title="Popular Movies"
               mediaType={MediaType.MOVIE}
             />
           }
@@ -69,6 +72,22 @@ export default async function HomePage() {
             mediaType={MediaType.MOVIE}
             seeAllHref="/movies/top-rated"
             promise={getTopRatedMovies(FIRST_PAGE)}
+          />
+        </Suspense>
+
+        <Suspense
+          fallback={
+            <FeaturedListSectionSkeleton
+              title="News"
+              mediaType={MediaType.MOVIE}
+            />
+          }
+        >
+          <FeaturedListSection
+            title="News"
+            mediaType={MediaType.MOVIE}
+            seeAllHref="/movies/news"
+            promise={getNewsList(FIRST_PAGE)}
           />
         </Suspense>
 
