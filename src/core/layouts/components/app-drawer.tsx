@@ -137,16 +137,56 @@ export function AppDrawer({ genres }: AppDrawerProps) {
           overflow: 'auto',
         }}
       >
-        <List subheader={<ListSubheader>Discover</ListSubheader>}>          
+        <List subheader={<ListSubheader>Discover</ListSubheader>}>
+          <AppDrawerItem
+            href="/movies/discover"
+            selected={pathname === '/movies/discover' && !genreId}
+            icon={<LightbulbIcon />}
+            title="Discover Movies"
+          />
+          <AppDrawerItem
+            href="/movies/popular"
+            selected={pathname === '/movies/popular'}
+            icon={<TrendingUpIcon />}
+            title="Popular Movies"
+          />
+          <AppDrawerItem
+            href="/movies/top-rated"
+            selected={pathname === '/movies/top-rated'}
+            icon={<StarIcon />}
+            title="Top Rated Movies"
+          />
+           <AppDrawerItem
+            href="/movies/news"
+            selected={pathname === '/movies/news'}
+            icon={<FeedIcon />}
+            title="News"
+          />
           <AppDrawerItem
             href="/people/popular"
             selected={pathname === '/people/popular'}
             icon={<PersonIcon />}
-            title="Directors"
+            title="Popular People"
           />
         </List>
         <Divider />
-        
+        <List subheader={<ListSubheader>Movie Genres</ListSubheader>}>
+          {genres.map((genre) => {
+            const searchParams = new URLSearchParams();
+            searchParams.set('genreId', genre.id.toString());
+
+            return (
+              <AppDrawerItem
+                key={genre.id}
+                href={createUrl('/movies/discover', searchParams)}
+                title={genre.name}
+                selected={
+                  pathname === '/movies/discover' && genreId === genre.id
+                }
+              />
+            );
+          })}
+        </List>
       </Box>
       <Divider />
       <TmdbAttribution />
