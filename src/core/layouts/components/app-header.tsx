@@ -5,7 +5,7 @@ import { NextLink } from '@/core/routing/components/next-link';
 import { useIsMobile } from '@/core/ui/hooks';
 import { SearchInput } from '@/features/search/components/search-input';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import LoginIcon from '@mui/icons-material/Login';
+import GitHubIcon from '@mui/icons-material/GitHub';
 import SearchIcon from '@mui/icons-material/Search';
 import {
   AppBar,
@@ -98,10 +98,10 @@ export function AppHeader() {
             </IconButton>
             <IconButton
               aria-label="Toggle theme"
-              href="#"
+              href="https://github.com/onderonur/next-moviez"
               LinkComponent={NextLink}
             >
-              <LoginIcon />
+              <GitHubIcon />
             </IconButton>
           </Stack>
         )}
