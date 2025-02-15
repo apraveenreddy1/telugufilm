@@ -7,6 +7,10 @@ import {
 } from '@/features/home/components/featured-list-section';
 import { MediaType } from '@/features/media/utils';
 import { FeaturedMovie } from '@/features/movies/components/featured-movie';
+
+
+
+
 import {
   getDiscoverMovies,
   getMovieGenres,
@@ -25,13 +29,13 @@ export const metadata = getMetadata({
 });
 
 export default async function HomePage() {
+
+  
   const [movieGenres, popularMovies, sliders] = await Promise.all([
     getMovieGenres(),
     getPopularMovies(FIRST_PAGE),
     getSliderMovies()
   ]);
-
-  const [featuredMovie] = popularMovies.results;
 
   return (
     <main>
