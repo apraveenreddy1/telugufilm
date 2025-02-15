@@ -46,7 +46,7 @@ export default async function HomePage() {
       <Stack spacing={6}>
         <Divider />
 
-        <Suspense
+        {/* <Suspense
           fallback={
             <FeaturedListSectionSkeleton
               title="Popular Movies"
@@ -95,25 +95,25 @@ export default async function HomePage() {
             seeAllHref="/movies/news"
             promise={getNewsList(FIRST_PAGE)}
           />
-        </Suspense>
+        </Suspense> */}
 
         <Suspense
           fallback={
             <FeaturedListSectionSkeleton
-              title="Popular People"
+              title="Directors"
               mediaType={MediaType.PERSON}
             />
           }
         >
           <FeaturedListSection
-            title="Popular People"
+            title="Directors"
             mediaType={MediaType.PERSON}
             seeAllHref="/people/popular"
             promise={getPopularPeople(FIRST_PAGE)}
           />
         </Suspense>
 
-        {movieGenres.slice(0, 5).map((genre) => {
+        {/* {movieGenres.slice(0, 5).map((genre) => {
           const searchParams = new URLSearchParams();
           searchParams.set('genreId', genre.id.toString());
 
@@ -138,7 +138,8 @@ export default async function HomePage() {
               />
             </Suspense>
           );
-        })}
+        })} */}
+
       </Stack>
     </main>
   );

@@ -138,7 +138,7 @@ export function AppDrawer({ genres }: AppDrawerProps) {
         }}
       >
         <List subheader={<ListSubheader>Discover</ListSubheader>}>
-          <AppDrawerItem
+          {/* <AppDrawerItem
             href="/movies/discover"
             selected={pathname === '/movies/discover' && !genreId}
             icon={<LightbulbIcon />}
@@ -161,16 +161,16 @@ export function AppDrawer({ genres }: AppDrawerProps) {
             selected={pathname === '/movies/news'}
             icon={<FeedIcon />}
             title="News"
-          />
+          /> */}
           <AppDrawerItem
             href="/people/popular"
             selected={pathname === '/people/popular'}
             icon={<PersonIcon />}
-            title="Popular People"
+            title="Directors"
           />
         </List>
         <Divider />
-        <List subheader={<ListSubheader>Movie Genres</ListSubheader>}>
+        {/* <List subheader={<ListSubheader>Movie Genres</ListSubheader>}>
           {genres.map((genre) => {
             const searchParams = new URLSearchParams();
             searchParams.set('genreId', genre.id.toString());
@@ -186,7 +186,7 @@ export function AppDrawer({ genres }: AppDrawerProps) {
               />
             );
           })}
-        </List>
+        </List> */}
       </Box>
       <Divider />
       <TmdbAttribution />

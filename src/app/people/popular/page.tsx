@@ -17,7 +17,7 @@ export default async function PopularPeoplePage() {
     <AppHeaderOffset>
       <main>
         <Padder>
-          <Title level={1} title="Popular People" />
+          <Title level={1} title="Directors" />
           <PeopleInfiniteGridList
             pageKeyTemplate={`/api/people/popular?${infiniteListSearchParams.toString()}`}
             firstPage={firstPage}

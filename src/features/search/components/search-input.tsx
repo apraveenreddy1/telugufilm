@@ -20,7 +20,7 @@ export function SearchInput({ autoFocus }: SearchInputProps) {
       type="search"
       sx={{ maxWidth: 'sm', width: '100%' }}
       size="small"
-      placeholder="Search Movies & People"
+      placeholder="Search Directors"
       autoFocus={autoFocus}
       startAdornment={
         <InputAdornment position="start">
@@ -28,24 +28,24 @@ export function SearchInput({ autoFocus }: SearchInputProps) {
         </InputAdornment>
       }
       defaultValue={query ?? ''}
-      onChange={(e) => {
-        const trimmedValue = e.target.value.trim();
+      // onChange={(e) => {
+      //   const trimmedValue = e.target.value.trim();
 
-        if (!trimmedValue) {
-          router.push('/');
-          return;
-        }
+      //   if (!trimmedValue) {
+      //     router.push('/');
+      //     return;
+      //   }
 
-        const newSearchParams = new URLSearchParams();
-        newSearchParams.set('query', trimmedValue);
-        const url = createUrl('/search', newSearchParams);
+      //   const newSearchParams = new URLSearchParams();
+      //   newSearchParams.set('query', trimmedValue);
+      //   const url = createUrl('/search', newSearchParams);
 
-        if (pathname === '/search') {
-          router.replace(url);
-        } else {
-          router.push(url);
-        }
-      }}
+      //   if (pathname === '/search') {
+      //     router.replace(url);
+      //   } else {
+      //     router.push(url);
+      //   }
+      // }}
     />
   );
 }
