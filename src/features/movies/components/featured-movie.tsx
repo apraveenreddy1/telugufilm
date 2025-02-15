@@ -70,16 +70,16 @@ export function FeaturedMovie({ movies }: FeaturedMovieProps) {
             <div>
               <MovieOverview text={movies?.[currentIndex]?.overview} maxLines={4} />
             </div>
-            <div>
-              {/* <ButtonLink
+            {/* <div>
+              <ButtonLink
                 href={`/movies/${movies?.[currentIndex]?.id}`}
                 variant="outlined"
                 color="primary"
                 startIcon={<InfoIcon />}
               >
                 More Info
-              </ButtonLink> */}
-            </div>
+              </ButtonLink> 
+            </div> */}
           </Stack>
         </Padder>
       </Box>
