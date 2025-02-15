@@ -6,8 +6,8 @@ export function TmdbAttribution() {
 
   return (
     <Box sx={{ padding: 2, textAlign: 'center' }}>
-      <NextLink href="https://www.themoviedb.org/" aria-label="The Movie DB">
-        <Image src='/logo.jpeg' width={100} height={100} alt='logo' />
+      <NextLink href="#" aria-label="Telugu Film">
+        <Image src='/logo.png' width={100} height={100} alt='logo' />
       </NextLink>
     </Box>
   );

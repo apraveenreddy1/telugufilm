@@ -28,9 +28,7 @@ export const httpClient = {
   ): Promise<Data> => {
   
     const fullUrl = createUrl(url, searchParams);
-    console.log(fullUrl)
     const response = await fetch(fullUrl);
-    console.log('response', response)
     const data = await handleResponse<Data>(response);
     return data;
   },
