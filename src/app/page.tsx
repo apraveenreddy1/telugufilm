@@ -23,6 +23,8 @@ import { getPopularPeople } from '@/features/people/data';
 import { Divider, Stack } from '@mui/material';
 import { Suspense } from 'react';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = getMetadata({
   title: 'Home',
   pathname: '/',
